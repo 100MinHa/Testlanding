@@ -3,49 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>간단한 테스트 페이지</title>
+    <title>✨ 크리스마스의 추억: 마음이 따뜻해지는 이야기 ✨</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+
     <style>
+        /* 폰트 임포트는 스타일 태그 내에서 */
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Gowun+Dodum&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0; /* 밝은 회색 배경 */
-            color: #333;
+            margin: 0;
+            font-family: 'Gowun Dodum', sans-serif; 
+            color: #4a4a4a;
+            background-color: #e8e6d9; /* 빈티지 종이색 */
+            line-height: 1.8;
+            overflow-x: hidden;
             text-align: center;
-            padding: 50px;
         }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        /* 눈 내리는 효과 컨테이너 */
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1; /* 눈이 배경 위에 보이도록 */
         }
-        h1 {
-            color: #007bff; /* 파란색 헤드라인 */
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #28a745; /* 녹색 버튼 */
+        
+        .snowflake {
+            position: absolute;
             color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7);
+            animation: fall linear infinite;
+            user-select: none;
         }
-        .button:hover {
-            background-color: #1e7e34;
+
+        /* HTML 헤더 스타일 */
+        .nostalgia-header {
+            padding: 80px 20px;
+            background-color: #8c2b2b; /* 따뜻한 버건디 */
+            color: #f7e6c4; /* 크림색 텍스트 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-bottom: 5px solid #6b1e1e;
+            position: relative;
+            z-index: 2;
+        }
+
+        .story-title {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .cozy-subtitle {
+            font-size: 1.5em;
+            opacity: 0.9;
+        }
+
+        /* 본문 내용 스타일 */
+        .cozy-content-section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 30px;
+            background-color: #fcfcfc;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        h2 {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 2.5em;
+            color: #a52a2a; 
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0b093;
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #5d5d5d;
+        }
+
+        .highlight-text {
+            color: #d85f5f;
+            font-style: italic;
+            font-weight: 700;
+            display: block;
+            margin-top: 15px;
+        }
+        
+        /* CTA 버튼 스타일 */
+        .cozy-cta-button {
+            background-color: #d85f5f;
+            color: #f7e6c4;
+            padding: 15px 35px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cozy-cta-button:hover {
+            background-color: #a52a2a;
+            transform: translateY(-3px);
+        }
+
+        /* 갤러리 스타일 */
+        .gallery-layout {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .memory-item {
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 5px solid #f7e6c4;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.5s;
+        }
+
+        .memory-item:hover {
+            transform: rotate(3deg) scale(1.05);
+        }
+
+        /* 푸터 스타일 */
+        .cozy-footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            background-color: #3e2723;
+            color: #f7e6c4;
+            font-size: 1.4em;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 애니메이션 키프레임 */
+        @keyframes fall {
+            0% { transform: translateY(-10vh); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+        
+        /* 모바일 반응형 */
+        @media (max-width: 768px) {
+            .story-title { font-size: 2.5em; }
+            .cozy-subtitle { font-size: 1.2em; }
+            h2 { font-size: 2em; }
+            p, .cozy-cta-button { font-size: 1.2em; }
+            .cozy-content-section { margin: 20px auto; padding: 15px; }
+            .gallery-layout { flex-direction: column; align-items: center; }
+            .memory-item { width: 90%; height: auto; }
         }
     </style>
-</head>
+    </head>
 <body>
-    <div class="container">
-        <h1>✅ 페이지 로드 성공 테스트</h1>
-        <p>이 페이지가 보인다면 GitHub Pages 배포 설정은 완벽하게 작동하고 있는 것입니다.</p>
-        <p>환영합니다! 당신의 첫 번째 페이지가 성공적으로 로드되었습니다.</p>
-        
-        <a href="https://github.com/100MinHa" class="button">GitHub 프로필로 이동</a>
-    </div>
-</body>
+    <div class="snow-container"></div> 
+    
+    <header class="nostalgia-header">
+        <h1 class="story-title">가장 소중한 크리스마스 이야기</h1>
+        <p class="cozy-subtitle">따뜻한 벽난로 옆에서, 우리의 추억이 시작됩니다.</p>
+    </header>
+
+    <main class="cozy-content-section">
+        <section class="intro-message">
+            <h2>🧣 마음을 여는 인사</h2>
+            <p>이곳은 [당신의 이름 또는 공간 이름]이 준비한 특별한 공간입니다. 매년 찾아오는 크리스마스의 설렘과 가족, 친구들과 나눴던 따뜻한 순간들을 기억하며 만들었습니다. 올해도 당신의 하루가 빛나기를 기도합니다.</p>
+            <p class="highlight-text">가장 소중한 사람에게 당신의 마음을 전해보세요.</p>
+            <button id="giftButton" class="cozy-cta-button">따뜻한 메시지 남기기 💌</button>
+        </section>
+
+        <section class="memory-gallery">
+            <h2>📸 지나간 순간들</h2>
+            <div class="gallery-layout">
+                <img src="https://picsum.photos/id/401/350/250" alt="따뜻한 털실과 커피" class="memory-item">
+                <img src="https://picsum.photos/id/357/350/250" alt="벽난로 앞의 고양이" class="memory-item">
+                <img src="https://picsum.photos/id/249/350/250" alt="촛불과 함께하는 저녁" class="memory-item">
+            </div>
+        </section>
+    </main>
+
+    <footer class="cozy-footer">
+        <p>함께하는 모든 순간이 선물이기를. 🕯️</p>
+    </footer>
+
+    <script>
+        // 눈 내리는 효과
+        function createSnowflake() {
+            const snowContainer = document.querySelector('.snow-container');
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowContainer.appendChild(snowflake);
+
+            // 눈송이의 랜덤한 위치 및 애니메이션 설정
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4~7초
+            snowflake.style.opacity = Math.random() * 0.8 + 0.2; // 0.2~1.0
+            snowflake.style.fontSize = Math.random() * 1 + 0.5 + 'em'; // 0.5em ~ 1.5em
+
+            // 애니메이션이 끝나면 눈송이 제거 및 재생성
+            snowflake.addEventListener('animationiteration', () => {
+                snowflake.remove();
+                createSnowflake();
+            });
+        }
+
+        // 초기 눈송이 60개 생성
+        for (let i = 0; i < 60; i++) {
+            createSnowflake();
+        }
+
+        // "따뜻한 메시지 남기기" 버튼 클릭 이벤트
+        document.getElementById('giftButton').addEventListener('click', function() {
+            alert('당신의 따뜻한 마음이 전해졌습니다! 이 소중한 추억이 오래도록 기억되기를 바랍니다. 🎁');
+        });
+    </script>
+    </body>
 </html>
